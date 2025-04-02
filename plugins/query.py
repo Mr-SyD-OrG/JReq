@@ -8,7 +8,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerId
 
 # Helper Function
 from Script import script
-from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, get_time, humanbytes 
+from utils import get_size, is_subscribed, is_req_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, get_time, humanbytes 
 from .ExtraMods.carbon import make_carbon
 
 # Database Function 
