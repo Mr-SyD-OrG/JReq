@@ -37,7 +37,7 @@ class temp(object):
 
 async def is_subscribed(bot, query):
     try:
-        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+        user = await bot.get_chat_member(SYD_CHANNEL, query.from_user.id)
     except UserNotParticipant:
         pass
     except Exception as e:
