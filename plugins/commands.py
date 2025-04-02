@@ -46,7 +46,8 @@ async def start(client, message):
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
         return await m.delete()
         
-    if AUTH_CHANNEL and not await is_req_subscribed(client, message):
+    if AUTH_CHANNEL: 
+        if not await is_req_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
         except ChatAdminRequired:
