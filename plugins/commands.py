@@ -50,21 +50,26 @@ async def start(client, message):
         btn = []
         if not await is_subscribed(client, message):
             btn.append([InlineKeyboardButton("Jᴏɪɴ Mʏ Cʜᴀɴɴᴇʟ ✨", url='https://t.me/Mod_Moviez_X')])
-            if message.command[1] != "subscribe":
-                try:
-                    kk, file_id = message.command[1].split("_", 1)
-                    pre = 'checksubp' if kk == 'filep' else 'checksub' 
-                    btn.append([InlineKeyboardButton("⟳ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")])
-                except (IndexError, ValueError):
-                    btn.append([InlineKeyboardButton("⟳ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-                
-            try:
-                return await client.send_message(chat_id=message.from_user.id, text=FORCE_SUB_TEXT, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.DEFAULT)
-            except Exception as e:
-            print(f"Force Sub Text Error\n{e}")
-                return await client.send_message(chat_id=message.from_user.id, text=script.FORCE_SUB_TEXT, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.DEFAULT)
-
         if not await is_req_subscribed(client, message):
+            invite_link = await client.create_chat_invite_link(chat_id=(int(AUTH_CHANNEL)), creates_join_request=True)
+            btn.append([InlineKeyboardButton("Jᴏɪɴ Mʏ Cʜᴀɴɴᴇʟ ✨", url=invite_link)])
+        if message.command[1] != "subscribe":
+            try:
+               kk, file_id = message.command[1].split("_", 1)
+               pre = 'checksubp' if kk == 'filep' else 'checksub' 
+               btn.append([InlineKeyboardButton("⟳ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")])
+               
+            
+            except (IndexError, ValueError):
+                btn.append([InlineKeyboardButton("⟳ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
+                
+        try:
+            return await client.send_message(chat_id=message.from_user.id, text=FORCE_SUB_TEXT, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.DEFAULT)
+        except Exception as e:
+            print(f"Force Sub Text Error\n{e}")
+            return await client.send_message(chat_id=message.from_user.id, text=script.FORCE_SUB_TEXT, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.DEFAULT)
+
+     
         
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
