@@ -17,7 +17,7 @@ BANNED = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
 START_CHAR = ('\'', '"', SMART_OPEN)
-
+REQUEST_TO_JOIN_MODE = True
 # temp db for banned 
 class temp(object):
     BANNED_USERS = []
@@ -45,7 +45,36 @@ async def is_subscribed(bot, query):
             return True
     return False
 
-
+async def is_req_subscribed(bot, query):
+    if REQUEST_TO_JOIN_MODE == True and join_db().isActive():
+        try:
+            user = await join_db().get_user(query.from_user.id)
+            if user and user["user_id"] == query.from_user.id:
+                return True
+            else:
+                try:
+                    user_data = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+                except UserNotParticipant:
+                    pass
+                except Exception as e:
+                    logger.exception(e)
+                else:
+                    if user_data.status != enums.ChatMemberStatus.BANNED:
+                        return True
+        except Exception as e:
+            logger.exception(e)
+            return False
+    else:
+        try:
+            user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+        except UserNotParticipant:
+            pass
+        except Exception as e:
+            logger.exception(e)
+        else:
+            if user.status != enums.ChatMemberStatus.BANNED:
+                return True
+        return False
 async def get_poster(query, bulk=False, id=False, file=None):
     imdb = Cinemagoer() 
     if not id:   
