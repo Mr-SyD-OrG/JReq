@@ -7,11 +7,12 @@ from imdb import Cinemagoer
 from typing import Union, List
 from datetime import datetime, timedelta
 from database.users_chats_db import db
+from database.join_reqs import SyDReqs
 from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
+join_db = SydReqs
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))")
 BANNED = {}
 SMART_OPEN = '“'
