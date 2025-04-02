@@ -19,6 +19,7 @@ SMART_OPEN = '“'
 SMART_CLOSE = '”'
 START_CHAR = ('\'', '"', SMART_OPEN)
 REQUEST_TO_JOIN_MODE = True
+SYD_CHANNEL = -1002042969565
 # temp db for banned 
 class temp(object):
     BANNED_USERS = []
