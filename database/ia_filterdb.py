@@ -57,8 +57,36 @@ async def save_file(media):
             return True, 1
 
 
+async def get_search_results(query, file_type=None, max_results=MAX_RIST_BTNS, offset=0, filter=False):
+    query = query.strip()
+    if not query:
+        raw_pattern = '.'
+    elif ' ' not in query:
+        raw_pattern = rf'\b{re.escape(query)}\b'
+    else:
+        raw_pattern = ".*".join(map(re.escape, query.split()))
+    
+    try:
+        regex = re.compile(raw_pattern, flags=re.IGNORECASE)
+    except re.error:
+        return [], '', 0
+    
+    search_filter = {'file_name': regex}
+    if file_type:
+        search_filter['file_type'] = file_type
 
-async def get_search_results(query, file_type=None, max_results=(MAX_RIST_BTNS), offset=0, filter=False):
+    # Use an indexed query if possible
+    total_results = await Media.count_documents(search_filter)
+    next_offset = offset + max_results if offset + max_results < total_results else ''
+
+    cursor = Media.find(search_filter, {'_id': 0})  # Exclude `_id` for efficiency
+    cursor.sort('_id', -1)  # Sorting by `_id` instead of `$natural`
+    cursor.skip(offset).limit(max_results)
+
+    files = await cursor.to_list(length=max_results)
+    return files, next_offset, total_results
+
+async def get_seach_results(query, file_type=None, max_results=(MAX_RIST_BTNS), offset=0, filter=False):
     query = query.strip()
     if not query: raw_pattern = '.'
     elif ' ' not in query: raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
