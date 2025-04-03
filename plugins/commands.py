@@ -31,8 +31,8 @@ async def start(client, message):
         return 
     await message.reply("⚡") 
     if not await db.is_user_exist(message.from_user.id):
-        await message.reply("⚡") 
-        await db.add_user(message.from_user.id, message.from_user.first_name)
+       # await message.reply("⚡") 
+       # await db.add_user(message.from_user.id, message.from_user.first_name)
         await message.reply("⚡")
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention, message.from_user.username, temp.U_NAME))
     await message.reply("⚡") 
