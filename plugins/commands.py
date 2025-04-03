@@ -37,12 +37,12 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [[
             InlineKeyboardButton("➕️ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Cʜᴀᴛ ➕", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
-            ],[
-            InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
-            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/Bot_Cracker")
             ],[      
             InlineKeyboardButton("Mᴏᴠɪᴇꜱ 🕸️", url="https://t.me/Mod_Moviez_X"),
             InlineKeyboardButton("Bᴏᴛꜱ ✨", url="https://t.me/Bot_Cracker/6")
+            ],[
+            #InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
+            InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/Bot_Cracker")
         ]]
         m = await message.reply("⚡") 
         await asyncio.sleep(2)
