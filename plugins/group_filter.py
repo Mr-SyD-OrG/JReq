@@ -79,7 +79,6 @@ async def next_page(bot, query):
     except: offset = 0
     search = temp.GP_BUTTONS.get(key)
     if not search: return await query.answer("Yᴏᴜ Aʀᴇ Usɪɴɢ Oɴᴇ Oғ Mʏ Oʟᴅ Mᴇssᴀɢᴇs, Pʟᴇᴀsᴇ Sᴇɴᴅ Tʜᴇ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ", show_alert=True)
-    
     files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
     try: n_offset = int(n_offset)
     except: n_offset = 0
@@ -180,6 +179,8 @@ async def give_filter(client, message):
 
 
 async def auto_filter(client, msg, spoll=False):
+    syd = await message.reply("ꜱᴇᴀʀᴄʜɪɴɢ ꜰᴏʀ ꜰɪʟᴇꜱ....")
+        
     if not spoll:
         message = msg
         settings = await get_settings(message.chat.id)
@@ -202,7 +203,7 @@ async def auto_filter(client, msg, spoll=False):
         search, files, offset, total_results = spoll
     pre = 'filep' if settings['file_secure'] else 'file'
     req = message.from_user.id if message.from_user else 0
-
+    await syd.edit("ꜰɪʟᴇꜱ ꜰᴏᴜɴᴅ! ꜱᴏʀᴛɪɴɢ....")
     if SHORT_URL and SHORT_API:          
         if settings["button"]:
             btn = [[InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
@@ -233,6 +234,7 @@ async def auto_filter(client, msg, spoll=False):
     
     cap = f"Sᴇᴀʀᴄʜ ʀᴇꜱᴜʟᴛꜱ ꜰᴏʀ {search} ❕"
     crl = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+    await syd.delete()
     await asyncio.sleep(IMDB_DELET_TIME)
     await crl.delete()   
     await message.delete()
