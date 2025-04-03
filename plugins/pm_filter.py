@@ -99,17 +99,16 @@ async def pm_spoll_tester(bot, query):
 async def pm_AutoFilter(client, msg, pmspoll=False):    
     if not pmspoll:
         message = msg   
-        await message.reply("1")
+        syd = await message.reply("ꜱᴇᴀʀᴄʜɪɴɢ ꜰᴏʀ ꜰɪʟᴇꜱ...")
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text): return
-        await message.reply("2")
         if 2 < len(message.text) < 100:
             search = message.text
             search_task = asyncio.create_task(get_search_results(search, offset=0, filter=True))
             files, offset, total_results = await search_task
            # files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files: return await pm_spoll_choker(msg) 
-            await message.reply("1")
+            await syd.edit("Fɪʟᴇꜱ ꜰᴏᴜɴᴅ! ꜱᴏʀᴛɪɴɢ...")
         else: return 
     else:
         message = msg.message.reply_to_message  # msg will be callback query
@@ -144,8 +143,8 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         )
     
     cap = f"Hᴇʀᴇ Is Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}"
-    await message.reply("jj1")
     abc = await message.reply_text(cap, quote=True, reply_markup=InlineKeyboardMarkup(btn))
+    await syd.delete()
     await asyncio.sleep(IMDB_DELET_TIME)
     await abc.delete()        
     if pmspoll:
