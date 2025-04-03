@@ -1,7 +1,7 @@
 import motor.motor_asyncio
 from info import AUTH_CHANNEL, DATABASE_URL
 
-class JoinReqs:
+class SyDReqs:
 
     def __init__(self):
         if OTHER_DB_URI:
