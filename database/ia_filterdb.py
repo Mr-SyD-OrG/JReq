@@ -57,7 +57,7 @@ async def save_file(media):
             return True, 1
 
 
-async def get_search_results(query, file_type=None, max_results=MAX_RIST_BTNS, offset=0, filter=False):
+async def get_serch_results(query, file_type=None, max_results=MAX_RIST_BTNS, offset=0, filter=False):
     query = query.strip()
     if not query:
         raw_pattern = '.'
@@ -86,7 +86,7 @@ async def get_search_results(query, file_type=None, max_results=MAX_RIST_BTNS, o
     files = await cursor.to_list(length=max_results)
     return files, next_offset, total_results
 
-async def get_seach_results(query, file_type=None, max_results=(MAX_RIST_BTNS), offset=0, filter=False):
+async def get_search_results(query, file_type=None, max_results=(MAX_RIST_BTNS), offset=0, filter=False):
     query = query.strip()
     if not query: raw_pattern = '.'
     elif ' ' not in query: raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
