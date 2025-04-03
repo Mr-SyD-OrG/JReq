@@ -51,12 +51,18 @@ async def start(client, message):
         
     if AUTH_CHANNEL: 
         btn = []
-        if not await is_subscribed(client, message):
-            btn.append([InlineKeyboardButton("Jᴏɪɴ Mʏ Cʜᴀɴɴᴇʟ ✨", url='https://t.me/Mod_Moviez_X')])
-        if not await is_req_subscribed(client, message):
-            invite_link = await client.create_chat_invite_link(chat_id=(int(AUTH_CHANNEL)), creates_join_request=True)
-            btn.append([InlineKeyboardButton("Jᴏɪɴ Mʏ Cʜᴀɴɴᴇʟ ✨", url=invite_link.invite_link)])
+        is_sub, is_req_sub = await asyncio.gather(
+            is_subscribed(client, message),
+            is_req_subscribed(client, message)
+        )
 
+        if not is_sub:
+            btn.append([InlineKeyboardButton("Jᴏɪɴ Mʏ Cʜᴀɴɴᴇʟ ✨", url='https://t.me/Mod_Moviez_X')])
+
+        if not is_req_sub:
+            invite_link = await client.create_chat_invite_link(chat_id=int(AUTH_CHANNEL), creates_join_request=True)
+            btn.append([InlineKeyboardButton("Jᴏɪɴ Mʏ Cʜᴀɴɴᴇʟ ✨", url=invite_link.invite_link)])
+            
         if message.command[1] != "subscribe":
             try:
                kk, file_id = message.command[1].split("_", 1)
