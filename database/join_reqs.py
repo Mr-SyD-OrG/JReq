@@ -1,6 +1,8 @@
 import motor.motor_asyncio
 from info import AUTH_CHANNEL, DATABASE_URL
 
+OTHER_DB_URI = None
+
 class SyDReqs:
 
     def __init__(self):
