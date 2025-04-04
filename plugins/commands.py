@@ -39,7 +39,7 @@ async def start(client, message):
             InlineKeyboardButton("➕️ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Cʜᴀᴛ ➕", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
             ],[      
             InlineKeyboardButton("Mᴏᴠɪᴇꜱ 🕸️", url="https://t.me/Mod_Moviez_X"),
-            InlineKeyboardButton("Bᴏᴛꜱ ✨", url="https://t.me/Bot_Cracker/6")
+            InlineKeyboardButton("Bᴏᴛꜱ ✨", url="https://t.me/Bot_Cracker/17")
             ],[
             #InlineKeyboardButton("Sᴇᴀʀᴄʜ 🔎", switch_inline_query_current_chat=''), 
             InlineKeyboardButton("Cʜᴀɴɴᴇʟ 🔈", url="https://t.me/Bot_Cracker")
