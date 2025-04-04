@@ -4,7 +4,7 @@ from Script import script
 from database.users_chats_db import db
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, START_MESSAGE, FORCE_SUB_TEXT, SUPPORT_CHAT
 from utils import get_settings, get_size, is_subscribed, is_req_subscribed, save_group_settings, temp
@@ -432,12 +432,12 @@ async def purge_requests(client, message):
         )
 
 @Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
-async def join_reqs(client, message: ChatJoinRequest):
+async def join_reqss(client, message: ChatJoinRequest):
   if not await db.find_join_req(message.from_user.id):
     await db.add_join_req(message.from_user.id)
 
 @Client.on_message(filters.command("delreq") & filters.private & filters.user(ADMINS))
-async def del_requests(client, message):
+async def del_requsts(client, message):
     await db.del_join_req()    
     await message.reply("<b>⚙ ꜱᴜᴄᴄᴇꜱꜱғᴜʟʟʏ ᴄʜᴀɴɴᴇʟ ʟᴇғᴛ ᴜꜱᴇʀꜱ ᴅᴇʟᴇᴛᴇᴅ</b>")
 
