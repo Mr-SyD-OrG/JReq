@@ -53,9 +53,9 @@ async def start(client, message):
         try:
             # Fetch subscription statuses once
             is_req_sub = await is_req_subscribed(client, message)
-            is_sub = await is_subscribed(client, message)
+           # is_sub = await is_subscribed(client, message)
 
-            if not (is_req_sub and is_sub):
+            if not is_req_sub:
                 try:
                     invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL), creates_join_request=True)
                 except ChatAdminRequired:
@@ -68,8 +68,8 @@ async def start(client, message):
                 if not is_req_sub:
                     btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ¹⊛", url=invite_link.invite_link)])
 
-                if not is_sub:
-                    btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ²⊛", url="https://t.me/Mod_Moviez_X")])
+               # if not is_sub:
+                  #  btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ²⊛", url="https://t.me/Mod_Moviez_X")])
 
                 if len(message.command) > 1 and message.command[1] != "subscribe":
                     try:
@@ -430,3 +430,14 @@ async def purge_requests(client, message):
             parse_mode=enums.ParseMode.MARKDOWN,
             disable_web_page_preview=True
         )
+
+@Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
+async def join_reqs(client, message: ChatJoinRequest):
+  if not await db.find_join_req(message.from_user.id):
+    await db.add_join_req(message.from_user.id)
+
+@Client.on_message(filters.command("delreq") & filters.private & filters.user(ADMINS))
+async def del_requests(client, message):
+    await db.del_join_req()    
+    await message.reply("<b>⚙ ꜱᴜᴄᴄᴇꜱꜱғᴜʟʟʏ ᴄʜᴀɴɴᴇʟ ʟᴇғᴛ ᴜꜱᴇʀꜱ ᴅᴇʟᴇᴛᴇᴅ</b>")
+
