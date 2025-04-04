@@ -7,6 +7,7 @@ from database.ia_filterdb import  Media
 from typing import Union, Optional, AsyncGenerator
 from utils import temp, __repo__, __license__, __copyright__, __version__
 from info import API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL, UPTIME, WEB_SUPPORT, LOG_MSG
+from plugins import web_server
 
 # Get logging configurations
 logging.config.fileConfig("logging.conf")
@@ -49,7 +50,7 @@ class Bot(Client):
         except Exception as e: logging.warning(f"Bot Isn't Able To Send Message To LOG_CHANNEL \n{e}")
         
         if bool(WEB_SUPPORT) is True:
-            app = web.AppRunner(web.Application(client_max_size=30000000))
+            app = web.AppRunner(await web_server())
             await app.setup()
             await web.TCPSite(app, "0.0.0.0", 8080).start()
             logging.info("Web Response Is Running......🕸️")
