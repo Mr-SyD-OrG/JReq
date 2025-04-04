@@ -16,17 +16,6 @@ logger.setLevel(logging.INFO)
 lock = asyncio.Lock()
 INDEX_CHANNEL = -1002498086501
 
-@Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
-async def join_reqs(client, message: ChatJoinRequest):
-  if not await db.find_join_req(message.from_user.id):
-    await db.add_join_req(message.from_user.id)
-
-@Client.on_message(filters.command("delreq") & filters.private & filters.user(ADMINS))
-async def del_requests(client, message):
-    await db.del_join_req()    
-    await message.reply("<b>⚙ ꜱᴜᴄᴄᴇꜱꜱғᴜʟʟʏ ᴄʜᴀɴɴᴇʟ ʟᴇғᴛ ᴜꜱᴇʀꜱ ᴅᴇʟᴇᴛᴇᴅ</b>")
-
-
 
 @Client.on_message(filters.document | filters.audio | filters.video)
 async def auto(bot, message):
