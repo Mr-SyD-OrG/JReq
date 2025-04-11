@@ -179,7 +179,7 @@ async def give_filter(client, message):
 
 
 async def auto_filter(client, msg, spoll=False):
-    syd = await message.reply("ꜱᴇᴀʀᴄʜɪɴɢ ꜰᴏʀ ꜰɪʟᴇꜱ....")
+    syd = await msg.reply("ꜱᴇᴀʀᴄʜɪɴɢ ꜰᴏʀ ꜰɪʟᴇꜱ....")
         
     if not spoll:
         message = msg
