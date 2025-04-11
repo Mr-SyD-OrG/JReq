@@ -48,13 +48,12 @@ async def start(client, message):
         await asyncio.sleep(2)
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
         return await m.delete()
-        
-    if AUTH_CHANNEL:
+    is_req_sub = await is_req_subscribed(client, message)
+    if AUTH_CHANNEL and not is_req_sub:
         try:
             await message.reply("⚡")
             # Fetch subscription statuses once
-            is_req_sub = await is_req_subscribed(client, message)
-           # is_sub = await is_subscribed(client, message)
+            # is_sub = await is_subscribed(client, message)
 
             if not is_req_sub:
                 await message.reply("⚡")
