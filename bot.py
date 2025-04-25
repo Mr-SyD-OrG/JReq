@@ -2,11 +2,10 @@ import os, math, logging, logging.config
 
 from aiohttp import web
 from pyrogram import Client, types
-from database.users_chats_db import db
 from database.ia_filterdb import  Media
 from typing import Union, Optional, AsyncGenerator
 from utils import temp, __repo__, __license__, __copyright__, __version__
-from info import API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL, UPTIME, WEB_SUPPORT, LOG_MSG
+from info import API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL, LOG_MSG
 from plugins import web_server
 
 # Get logging configurations
@@ -26,15 +25,10 @@ class Bot(Client):
         )
 
     async def start(self):
-        b_users, b_chats = await db.get_banned()
-        temp.BANNED_USERS = b_users
-        temp.BANNED_CHATS = b_chats        
         
         await super().start()
         await Media.ensure_indexes()
         me = await self.get_me()
-        temp.U_NAME = me.username
-        temp.B_NAME = me.first_name
         self.id = me.id
         self.name = me.first_name
         self.mention = me.mention
