@@ -25,7 +25,6 @@ class Bot(Client):
     async def start(self):
         
         await super().start()
-        await Media.ensure_indexes()
         me = await self.get_me()
         self.id = me.id
         self.name = me.first_name
