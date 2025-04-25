@@ -30,7 +30,6 @@ class Bot(Client):
         self.name = me.first_name
         self.mention = me.mention
         self.username = me.username
-        self.log_channel = LOG_CHANNEL
         logging.info(LOG_MSG.format(me.first_name))
         
         try: await self.send_message(SUDO, text=LOG_MSG.format(me.first_name), disable_web_page_preview=True)   
