@@ -3,7 +3,7 @@ import os, math, logging, logging.config
 from aiohttp import web
 from pyrogram import Client, types
 from typing import Union, Optional, AsyncGenerator
-from info import API_ID, API_HASH, BOT_TOKEN, SUDO, LOG_MSG
+from info import API_ID, API_HASH, BOT_TOKEN, SUDO, LOG_MSG, WEB_SUPPORT
 from plugins import web_server
 
 # Get logging configurations
