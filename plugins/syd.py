@@ -40,10 +40,10 @@ async def handle_join_request(client: Client, join_request: ChatJoinRequest):
 @Client.on_message(filters.private & filters.command("start"))
 async def op(_, m :Message):
     try:
-        await app.get_chat_member(CHID, m.from_user.id)
+        await Client.get_chat_member(CHID, m.from_user.id)
     except:
         try:
-            invite_link = await app.create_chat_invite_link(int(CHID))
+            invite_link = await Client.create_chat_invite_link(int(CHID))
         except:
             await m.reply("**Make Sure I Am Admin In Your Channel**")
             return 
@@ -70,7 +70,7 @@ async def op(_, m :Message):
 @Client.on_callback_query(filters.regex("chk"))
 async def chk(_, cb : CallbackQuery):
     try:
-        await app.get_chat_member(CHID, cb.from_user.id)
+        await Client.get_chat_member(CHID, cb.from_user.id)
     except:
         await cb.answer("🙅‍♂️ You are not joined my channel first join channel then check again. 🙅‍♂️", show_alert=True)
         return 
