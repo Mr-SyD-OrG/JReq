@@ -1,4 +1,4 @@
-import os, math, logging, datetime, pytz, logging.config
+import os, math, logging, datetime, logging.config
 
 from aiohttp import web
 from pyrogram import Client, types
@@ -40,13 +40,9 @@ class Bot(Client):
         self.mention = me.mention
         self.username = me.username
         self.log_channel = LOG_CHANNEL
-        self.uptime = UPTIME
-        curr = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
-        date = curr.strftime('%d %B, %Y')
-        tame = curr.strftime('%I:%M:%S %p')
-        logging.info(LOG_MSG.format(me.first_name, date, tame, __repo__, __version__, __license__, __copyright__))
+        logging.info(LOG_MSG.format(me.first_name, __repo__, __version__, __license__, __copyright__))
         
-        try: await self.send_message(LOG_CHANNEL, text=LOG_MSG.format(me.first_name, date, tame, __repo__, __version__, __license__, __copyright__), disable_web_page_preview=True)   
+        try: await self.send_message(LOG_CHANNEL, text=LOG_MSG.format(me.first_name, __repo__, __version__, __license__, __copyright__), disable_web_page_preview=True)   
         except Exception as e: logging.warning(f"Bot Isn't Able To Send Message To LOG_CHANNEL \n{e}")
         
         if bool(WEB_SUPPORT) is True:
