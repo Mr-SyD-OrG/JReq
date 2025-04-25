@@ -3,7 +3,7 @@ import os, math, logging, logging.config
 from aiohttp import web
 from pyrogram import Client, types
 from typing import Union, Optional, AsyncGenerator
-from info import API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL, LOG_MSG
+from info import API_ID, API_HASH, BOT_TOKEN, SUDO, LOG_MSG
 from plugins import web_server
 
 # Get logging configurations
@@ -34,7 +34,7 @@ class Bot(Client):
         self.log_channel = LOG_CHANNEL
         logging.info(LOG_MSG.format(me.first_name))
         
-        try: await self.send_message(LOG_CHANNEL, text=LOG_MSG.format(me.first_name), disable_web_page_preview=True)   
+        try: await self.send_message(SUDO, text=LOG_MSG.format(me.first_name), disable_web_page_preview=True)   
         except Exception as e: logging.warning(f"Bot Isn't Able To Send Message To LOG_CHANNEL \n{e}")
         
         if bool(WEB_SUPPORT) is True:
