@@ -41,7 +41,8 @@ async def handle_join_request(client: Client, join_request: ChatJoinRequest):
 async def op(_, m :Message):
     try:
         await _.get_chat_member(CHID, m.from_user.id)
-    except:
+    except Exception as e:
+        print(f"User not in channel: {e}")
         try:
             invite_link = await _.create_chat_invite_link(int(CHID))
         except:
