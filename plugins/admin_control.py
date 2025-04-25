@@ -1,4 +1,4 @@
-from pyrogram import Client, filters, enums
+fromfromfromfrom pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, PeerIdInvalid, UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
