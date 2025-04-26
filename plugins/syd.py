@@ -45,11 +45,11 @@ async def op(_, m :Message):
         print(f"User not in channel: {e}")
         key = InlineKeyboardMarkup(
             [[
-                InlineKeyboardButton("🍿 Join Update Channel 🍿", url="https://t.me/bot_Cracker"),
-                InlineKeyboardButton("🍀 Check Again 🍀", callback_data="chk")
+                InlineKeyboardButton("↱ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ↲", url="https://t.me/bot_Cracker"),
+                InlineKeyboardButton("Cᴏɴᴛɪɴᴜᴇ ↯", callback_data="chk")
             ]]
         )
-        await m.reply_text("**Please Join My Update Channel To Use Me.If You Joined The Channel Then Click On Check Again Button To Confirm.**", reply_markup=key)
+        await m.reply_text("**Pʟᴇᴀꜱᴇ Jᴏɪɴ Iɴ Oᴜʀ Cʜᴀɴɴᴇʟ Tᴏ Uꜱᴇ Mᴇ 🥶.\nIꜰ Yᴏᴜ Jᴏɪɴᴇᴅ Tʜᴇ Cʜᴀɴɴᴇʟ Tʜᴇɴ Cʟɪᴄᴋ Oɴ Cᴏɴᴛɪɴᴜᴇ Bᴜᴛᴛᴏɴ Tᴏ Pʀᴏᴄᴇꜱꜱ ✨.\n__Jᴏɪɴ: @Bot_Cracker 🌡️__**", reply_markup=key)
         return 
     keyboard = InlineKeyboardMarkup(
         [[
@@ -63,7 +63,7 @@ async def op(_, m :Message):
 
     )
     add_user(m.from_user.id)
-    await m.reply_photo("https://i.ibb.co/5xx6Xd3w/file-1426.jpg", caption="**ʜᴇʏ {}!\n\nɪ'ᴍ ᴀɴ ɪɴꜱᴛᴀɴᴛ ᴀᴩᴩʀᴏᴠᴀʟ ʙᴏᴛ [ᴀᴄᴄᴇᴩᴛ ᴊᴏɪɴ ʀᴇqᴜᴇꜱᴛꜱ] ʙᴏᴛ.\nɪ ᴄᴀɴ ᴀᴩᴩʀᴏᴠᴇ ᴜꜱᴇʀꜱ ɪɴ ɢʀᴏᴜᴩ/ᴄʜᴀɴɴᴇʟꜱ. ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ᴄʜᴀᴛ ᴀɴᴅ ᴩʀᴏᴍᴏᴛᴇ ᴍᴇ ᴛᴏ ᴀᴅᴍɪɴ ᴡɪᴛʜ ɪɴᴠɪᴛᴇ ᴩᴇʀᴍɪꜱꜱɪᴏɴ.\n\n__Pᴏᴡᴇʀᴇᴅ Bʏ : @Bot_Cracker __**".format(m.from_user.mention), reply_markup=keyboard)
+    await m.reply_photo("https://i.ibb.co/5xx6Xd3w/file-1426.jpg", caption="**ʜᴇʏ {}!\n\nɪ'ᴍ ᴀɴ ɪɴꜱᴛᴀɴᴛ ᴀᴩᴩʀᴏᴠᴀʟ ʙᴏᴛ [ᴀᴄᴄᴇᴩᴛ ᴊᴏɪɴ ʀᴇqᴜᴇꜱᴛꜱ] ʙᴏᴛ.\nɪ ᴄᴀɴ ᴀᴩᴩʀᴏᴠᴇ ᴜꜱᴇʀꜱ ɪɴ ɢʀᴏᴜᴩ/ᴄʜᴀɴɴᴇʟꜱ. ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ᴄʜᴀᴛ ᴀɴᴅ ᴩʀᴏᴍᴏᴛᴇ ᴍᴇ ᴛᴏ ᴀᴅᴍɪɴ ᴡɪᴛʜ ɪɴᴠɪᴛᴇ ᴩᴇʀᴍɪꜱꜱɪᴏɴ.\n\n__Pᴏᴡᴇʀᴇᴅ Bʏ : @Mod_Moviez_X __**".format(m.from_user.mention), reply_markup=keyboard)
     
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ callback ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
