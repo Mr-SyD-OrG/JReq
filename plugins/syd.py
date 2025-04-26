@@ -44,11 +44,11 @@ async def op(_, m :Message):
     except Exception as e:
         print(f"User not in channel: {e}")
         key = InlineKeyboardMarkup(
-            [
+            [[
                 InlineKeyboardButton("🍿 Join Update Channel 🍿", url="https://t.me/bot_Cracker"),
                 InlineKeyboardButton("🍀 Check Again 🍀", callback_data="chk")
-            ]
-         ) 
+            ]]
+        )
         await m.reply_text("**Please Join My Update Channel To Use Me.If You Joined The Channel Then Click On Check Again Button To Confirm.**", reply_markup=key)
         return 
     keyboard = InlineKeyboardMarkup(
